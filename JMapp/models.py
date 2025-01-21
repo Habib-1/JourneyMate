@@ -1,5 +1,5 @@
 from django.db import models
-
+from account.models import Account
 # Create your models here.
 class Train(models.Model):
     train_name=models.CharField(max_length=100, unique=True)
@@ -50,4 +50,25 @@ class Train_route(models.Model):
 
     def __str__(self):
         return self.Train_name.train_name
-    
+
+class customer_message(models.Model):
+    name=models.CharField(max_length=100)
+    email=models.EmailField(max_length=100)
+    message=models.TextField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class Ticket(models.Model):
+    user=models.ForeignKey(Account,on_delete=models.CASCADE)
+    issue_date=models.DateTimeField(auto_now_add=True)
+    train_name=models.CharField(max_length=100)
+    departure=models.CharField(max_length=100)
+    arrival=models.CharField(max_length=100)
+    journey_date=models.DateField()
+    start_time=models.TimeField()
+    seats=models.CharField(max_length=100)
+    total_fare=models.CharField(max_length=100)
+
+   

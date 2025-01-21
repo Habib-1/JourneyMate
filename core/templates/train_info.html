@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+                <div class="container my-4"> 
+                    <table class="table table-striped p-5 shadow rounded-lg">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Departure Station</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">Destination Station</th>
+                                <th scope="col">Arrival Time</th>
+                                
+                            </tr>
+                        </thead>
+                
+                        <tbody>        
+                        {% if schedules%}
+                    
+                        {% for schedule in schedules  %}
+                        <tr>
+                            <td>{{schedule.train}}</td>
+                            <td>{{schedule.start_station}}</td>
+                            <td>{{schedule.start_time}}</td>
+                            <td>{{schedule.end_station}}</td>
+                            <td>{{schedule.arrival_time}}</td>
+                            
+                        </tr>
+                     {% endfor %}  
+                     {% else %}
+                     <tr>
+                        <td class="text-danger">No Train Available</td>
+                     </tr>    
+                 {% endif %}   
+                </tbody>   
+            </table>
+        </div>     
+
+          
+ 
+
+
+
+
+{% endblock content %}
+

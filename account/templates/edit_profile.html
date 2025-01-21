@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="my-5">
+  
+    <div class="container w-50 card py-3 px-5">
+      <h4 class="text-center pb-2">Profile Update Form</h4>
+      <form action="{% url 'edit_profile' %}" method="POST">
+        {% csrf_token %}
+            <div class="form-row d-flex ">
+                <div class="col form-group me-3 ">
+                    <label>First name</label>
+                      {{ form.first_name }}
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Last name</label>
+                      {{ form.last_name }}
+                </div> <!-- form-group end.// -->
+            </div> <!-- form-row end.// -->
+            
+            
+            <div class="form-row d-flex">
+                <div class="col form-group me-3">
+                    <label>Email </label>
+                      {{ form.email }}
+                </div> <!-- form-group end.// -->
+                <div class="col form-group">
+                    <label>Phone </label>
+                      {{ form.phone_number }}
+                </div> <!-- form-group end.// -->
+                
+            </div> <!-- form-row.// -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block my-3">Submit</button>
+            </div> <!-- form-group// -->  
+            </div>
+            
+        </form>
+    </div>
+             
+      
+  </section>
+       
+{% endblock content %}
+    

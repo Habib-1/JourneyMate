@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row d-flex justify-content-evenly align-items-center">
+    <div class="col-6 ps-3">
+        <h3 class="text-danger">Help Line </h3>
+        <h5 class="ms-4">16777<h5>
+        <h3 class="text-danger">Email </h3>
+        <h5 class="ms-4">journeymate@gmail.com<h5>
+        <h3 class="text-danger">Address</h3>
+        <h5 class="ms-4">Naddpara,Dakkhinkhan,Dhaka<h5>
+
+    </div>
+
+   <div class="col-6 card py-4 px-5 shadow rounded">
+    <h2>Contact Form</h2>
+    <form method="POST" action="{% url 'contact_us' %}" >
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            <label for="name">Name</label>
+            {{form.name}}
+        </div>
+        <div class="form-group mb-2">
+            <label for="email">Email address</label>
+            {{form.email}}
+        </div>
+        <div class="form-group ">
+            <label for="message">Message</label>
+           {{form.message}}
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+    </form>
+   </div>
+
+</div>
+</div> 
+{% endblock content %}
+    

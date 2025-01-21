@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'download_ticket' %}">
+    {% csrf_token %}
+<div class="container my-4">
+    <div class="card ">
+        <div class="card-header d-flex justify-content-between align-items-center">
+           <div> <h3>Ticket Details</h3> </div>
+           <div>
+            <button type="submit" class="btn btn-primary mt-3">Download</button>
+           </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Passenger Information</h5>
+                    <p><strong>Name:</strong> {{user.first_name}} {{user.last_name}}</p>
+                    <p><strong>Phone:</strong> {{user.phone_number}}</p>
+                    <p><strong>Email:</strong>{{user.email}}</p>
+                    
+                </div>
+                <div class="col-md-6">
+                    <h5>Journey Information </h5>
+                    <p><strong>Train Name: </strong> {{train_name}}</p>
+                    <p><strong>Departure: </strong> {{departure}}</p>
+                    <p><strong>Arrival: </strong> {{arrival}}</p>
+                    <p><strong>Date: </strong> {{journey_date}}</p>
+                    <p><strong>Time: </strong>  {{start_time}}</p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-12">
+                    <h5>Seat Information</h5>
+                    
+                    <p><strong>Seat Number: </strong> 
+                            {{seats}}
+                     </p>
+                    <p><strong>Total Fare: </strong> {{total_fare}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" name="user_first_name" value="{{ user.first_name }}">
+<input type="hidden" name="user_last_name" value="{{ user.last_name }}">
+<input type="hidden" name="user_phone_number" value="{{ user.phone_number }}">
+<input type="hidden" name="user_email" value="{{ user.email }}">
+<input type="hidden" name="train_name" value="{{ train_name }}">
+<input type="hidden" name="departure" value="{{ departure }}">
+<input type="hidden" name="arrival" value="{{ arrival }}">
+<input type="hidden" name="journey_date" value="{{ journey_date }}">
+<input type="hidden" name="start_time" value="{{ start_time }}">
+<input type="hidden" name="seats" value="{{ seats }}">
+<input type="hidden" name="total_fare" value="{{ total_fare }}">
+</form>
+{% endblock content %}
+    

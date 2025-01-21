@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+    
     <div class="container-fluid">
         <div class="row py-4 bg-info-subtle">
-            <h1 class="text-center py-3">Train Search Results</h1>
+            <h1 class="text-center py-3">Train Search Results </h1>
             <div class="d-flex justify-content-around align-items-center">
                 <div class="col-6" >
                     <form class="ms-5" method="GET" action="{% url 'seatplan' %}">
@@ -21,6 +21,9 @@
                                     
                             </select>
                             <input type="hidden" name="date" value="{{ date }}">
+                            <input type="hidden" name="departure" value="{{ departure }}">
+                            <input type="hidden" name="destination" value="{{ destination }}">
+                          
                             <button type="submit" class="btn btn-primary mt-3">Available Seat</button>
                             {% else %}
                                 <h5>NO Train Available</h5>

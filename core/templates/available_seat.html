@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+
 <form method="POST" action="{% url 'buyticket' %}">
     {% csrf_token %}
     <div class="container-fluid py-5 bg-info-subtle">
@@ -13,13 +14,16 @@
                         <div class="seat-row d-flex"> <!-- New row starts -->
                     {% endif %}
                         {% if seat.is_available %}
+                           
                             <div 
-                                class="seat available-seat" 
-                                data-seat-number="{{ seat.seat_number }}"
-                                onclick="selectSeat(this)"
-                            >
-                                {{ seat.seat_number }}
-                            </div>
+                            class="seat available-seat" 
+                            data-seat-number="{{ seat.seat_number }}"
+                            onclick="selectSeat(this)"
+                            
+                        >
+                            {{ seat.seat_number }}
+                        </div>
+                           
                         {% else %}
                             <div class="seat bg-danger">{{ seat.seat_number }}</div>
                         {% endif %}
@@ -30,8 +34,11 @@
             </div>
 
             <!-- Hidden input to store selected seats -->
-            <input type="hidden" name="selected_seats" id="selected-seats" value="">
-
+            <input type="hidden" name="selected_seats" id="selected-seats" value="{{seat.seat_number}}">
+            <input type="hidden" name="date" value="{{ date }}">
+            <input type="hidden" name="departure" value="{{ departure }}">
+            <input type="hidden" name="destination" value="{{ destination }}">
+            <input type="hidden" name="train" value="{{ train }}">
             <button type="submit" class="btn btn-primary mt-4">Buy Ticket</button>
         </div>
     </div>

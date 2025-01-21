@@ -18,6 +18,7 @@
             crossorigin="anonymous"
         />
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
 
     <body>
@@ -34,25 +35,56 @@
                         <a class="nav-link active fw-semibold" aria-current="page" href="{% url 'home' %}">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="#">Train Information</a>
+                        <a class="nav-link fw-semibold" href="{% url 'train_info' %}">Train Information</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="#">Contuct Us</a>
+                        <a class="nav-link fw-semibold" href="{% url 'contact_us' %}">Contact Us</a>
                       </li>
                     </ul>
+                   {% if request.user.is_authenticated %}
                     <div class="widget-header">
-						<small class="title text-muted">Welcome guest!</small>
-						<div> 
-							<a class="text-decoration-none" href="#">Sign in</a> <span class="dark-transp"> | </span>
-							<a class="text-decoration-none" href="#"> Register</a>
-						</div>
+                      <div class="dropdown">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                         Hello, {{user.username | upper}}!
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                          <li><a class="dropdown-item" href="#">Purchase History</a></li>
+                          <li><a class="dropdown-item" href="#">Password Change</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                      </div>
+					
 					</div>
+          {% else %}
+          <div class="widget-header">
+          <small class="title text-muted">Welcome guest!</small>
+          <div> 
+            <a class="text-decoration-none" href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+            <a class="text-decoration-none" href="{% url 'register' %}"> Register</a>
+          </div>
+        </div>
+          {% endif %}
                   </div>
                 </div>
               </nav>
         </header>
         <main>
+    {% if messages %}
+      
+    {% for msg in messages  %}
+          <div class="alert alert-{{msg.tags}} text-{{msg.tags}} ">
+            <strong>{{msg}}</strong>
+           </div>
+           <script>
+            setTimeout (()=>{
+                $(".alert").alert("close");
+            },3000) 
             
+        </script>
+          {% endfor %}
+            
+         {% endif %}
             {% block content %}
                 
             {% endblock content %}

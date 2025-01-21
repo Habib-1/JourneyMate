@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container  m-5">
+    <div class="card">
+        <div class="card-header">
+            
+            <div class="d-flex justify-content-between align-items-center">
+                <h3>Profile Details</h3>
+                <a href="{% url 'edit_profile' %}" class="btn mt-2 btn-danger "> Edit Profile</a>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-4">
+                    <img src="{% static 'profile.png' %}" class="img-fluid rounded-circle" alt="Profile Picture">
+                </div>
+                <div class="col-md-8">
+                    <h4 class="card-title">{{user.username|upper}}</h4>
+                    <p class="card-title"><strong>Name:</strong> {{user.first_name}} {{user.last_name}}</p>
+                    <p class="card-text"><strong>Email:</strong> {{user.email}} </p>
+                    <p class="card-text"><strong>Phone:</strong> {{user.phone_number}}</p>
+                    <p class="card-text"><strong>Address:</strong> 123 Main St, Anytown, USA</p>
+                    <p class="card-text"><strong>Bio:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+    
